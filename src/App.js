@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Clock from './Clock.js';
+import Saved from './Saved.js';
 
 class App extends Component {
     constructor(props) {
@@ -18,14 +19,19 @@ class App extends Component {
 
     render () {
     return (
-      <div className="app">
-        <h1 className="title "> Countdown to {this.state.deadline} </h1> 
-        <div className="times"> 
-            <Clock passingDate={this.state.deadline} />
+    <div>        
+        <div className="app">
+            <h1 className="title "> Countdown to {this.state.deadline} </h1> 
+            <div className="times"> 
+                <Clock passingDate={this.state.deadline} />
+            </div>
+            <input onChange={e => this.setState({newDeadline: e.target.value})} className="input" placeholder="December 25, 2017"/>
+            <span type="submit" className="submit" onClick={this.handleSubmit}> Submit </span> 
         </div>
-        <input onChange={e => this.setState({newDeadline: e.target.value})} className="input" placeholder="December 25, 2017"/>
-        <span type="submit" className="submit" onClick={this.handleSubmit}> Submit </span> 
-      </div>
+        <div className="well">
+            <Saved/>
+        </div>
+    </div>
     )
 }
 }
